@@ -89,6 +89,17 @@ Before setting up the project, ensure you have the following installed:
 5. **Access the Frontend**:
    Open your browser and visit the frontend at [http://localhost:5173](http://localhost:5173).
 
+## **Testing**
+
+### **Backend Unit Tests**
+- The backend includes unit tests for the parser and other features.
+- Run tests with:
+  ```bash
+  bun run test --cwd ./backend
+  ```
+
+- The parser tests are located in `backend/src/tests/parser.test.ts`.
+
 ## **API Endpoints**
 
 ### **POST /evaluate**
