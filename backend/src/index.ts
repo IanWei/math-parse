@@ -16,7 +16,7 @@ app.post('/evaluate', (req, res) => {
     const result = parser.results[0];
     res.json({ result });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(400).json({ error: `The error occurs at the position ${error.offset}` });
   }
 });
 

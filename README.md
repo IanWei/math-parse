@@ -133,7 +133,7 @@ Before setting up the project, ensure you have the following installed:
     - **Error**:
       ```json
       {
-      "error": "Invalid expression"
+      "error": "The error occurs at the position [index]"
       }
       ```
 
