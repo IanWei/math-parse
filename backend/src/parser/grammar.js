@@ -94,12 +94,11 @@ var grammar = {
         }
         },
     {"name": "main", "symbols": ["comparison"]},
+    {"name": "operator", "symbols": [{"literal":"="}]},
+    {"name": "operator", "symbols": [{"literal":"!="}]},
     {"name": "comparison", "symbols": ["arithmetic", "operator", "arithmetic"], "postprocess": 
         compare
          },
-    {"name": "operator", "symbols": [{"literal":"="}]},
-    {"name": "operator", "symbols": [{"literal":"!="}]},
-    {"name": "ws", "symbols": [(lexer.has("WS") ? {type: "WS"} : WS)]},
     {"name": "arithmetic", "symbols": ["arithmetic", {"literal":"+"}, "term"], "postprocess": 
         add
         },

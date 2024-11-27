@@ -6,28 +6,25 @@ const { lexer, compare, add, subtract, multiply, divide } = require('./lexer');
 @builtin "number.ne"
 
 main -> comparison
+operator -> "=" | "!="
 
 comparison -> arithmetic operator arithmetic {%
     compare
  %}
 
-operator -> "=" | "!="
-
-ws -> %WS
-
 arithmetic -> arithmetic "+" term {%
-  add
+    add
 %}
   | arithmetic "-" term {%
-  subtract
+    subtract
 %}
   | term
 
 term -> term "*" int {%
-  multiply
+    multiply
 %}
   | term "/" int {%
-  divide
+    divide
 %}
   | int
 
