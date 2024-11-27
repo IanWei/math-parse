@@ -1,0 +1,12 @@
+{
+  "name": "math-parse",
+  "version": "1.0.0",
+  "scripts": {
+    "start:backend": "bun run --cwd ./backend src/index.ts",
+    "start:frontend": "bun run --cwd ./frontend dev",
+    "start": "concurrently \"bun run start:backend\" \"bun run start:frontend\""
+  },
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
