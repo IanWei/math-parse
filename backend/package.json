@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "bun run src/index.ts",
     "build-grammar": "nearleyc src/parser/grammar.ne -o src/parser/grammar.js",
+    "build-ast": "nearleyc src/parser/ast.ne -o src/parser/ast.js",
     "test": "jest"
   },
   "devDependencies": {

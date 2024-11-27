@@ -1,8 +1,10 @@
-import nearley from 'nearley';
-import * as grammar from './grammar.js'; // Path to compiled grammar
+import nearley, { CompiledGrammar } from 'nearley';
+import * as ast from './ast.js';
+import * as grammar from './grammar.js';
 
-export function parseExpression(expr: string): any {
-  const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar));
-  parser.feed(expr.replaceAll(' ', ''));
-  return parser.results[0];
-}
+export const parseExpression = (expr: string, isAst: boolean = false): any => {
+  const grammarModule = (isAst ? ast : grammar) as CompiledGrammar;
+  const parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammarModule));
+  parser.feed(expr.replace(/\s/g, ''));
+  return isAst ? JSON.stringify(parser.results[0][0], null, 2) : parser.results[0];
+};
