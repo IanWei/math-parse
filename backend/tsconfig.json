@@ -12,7 +12,11 @@
     "paths": {                          // Path aliases (if needed)
       "*": ["node_modules/*"]
     },
-    "resolveJsonModule": true           // Allow importing JSON files as modules
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,           // Allow importing JSON files as modules,
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
   "include": ["src", "src/**/*.d.ts"],
   "exclude": ["node_modules", "dist"]  // Exclude unnecessary directories

@@ -4,11 +4,15 @@
   "type": "module",
   "scripts": {
     "dev": "bun run src/index.ts",
-    "build-grammar": "nearleyc src/parser/grammar.ne -o src/parser/grammar.js"
+    "build-grammar": "nearleyc src/parser/grammar.ne -o src/parser/grammar.js",
+    "test": "jest"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/cors": "^2.8.17"
+    "@types/cors": "^2.8.17",
+    "@types/jest": "^29.5.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5"
   },
   "peerDependencies": {
     "typescript": "^5.7.2"
@@ -20,5 +24,13 @@
     "express": "^4.21.1",
     "moo": "^0.5.2",
     "nearley": "^2.20.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testMatch": ["<rootDir>/src/tests/**/*.test.(t|j)s"],
+    "moduleFileExtensions": ["ts", "js", "json", "node"]
   }
 }
