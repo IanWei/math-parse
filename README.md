@@ -8,9 +8,12 @@ Math-Parse is a full-stack application that evaluates mathematical expressions a
 
 ### **Backend**
 - Parses and evaluates mathematical expressions.
+- Generates an Abstract Syntax Tree (AST) for expressions to provide a structured representation of the parsed data.
 - Returns whether the expression evaluates to `true` or `false`.
 - Supports arithmetic and comparison operators.
 - Built using **Express** and **TypeScript**.
+- Unit tested with **Jest** for robust validation.
+
 
 ### **Frontend**
 - Provides a simple interface for entering mathematical expressions.
@@ -27,12 +30,13 @@ math-parse/
 ├── backend/            # Backend codebase
 │   ├── src/            # Backend source code
 │   │   ├── parser/     # Nearley grammar and lexer
+│   │   ├── tests/      # Unit tests for backend
 │   │   └── index.ts    # Main Express server
 ├── frontend/           # Frontend codebase
 │   ├── src/            # React frontend source code
 │   ├── public/         # Public assets
 │   └── index.html      # HTML entry point
-└── package.json        # Root package.json for managing both services
+└── README.md           # Project documentation
 ```
 
 ## **Prerequisites**
@@ -96,15 +100,14 @@ Before setting up the project, ensure you have the following installed:
 - Run tests with:
   ```bash
   bun run test --cwd ./backend
-  ```
+  ``` 
 
-- The parser tests are located in `backend/src/tests/parser.test.ts`.
+- The parser tests and AST tests are located in `backend/src/tests`.
 
 ## **API Endpoints**
 
-### **POST /evaluate**
-- **Description**: Evaluates a mathematical expression and determines if it is `true` or `false`.
-
+### **POST /ast**
+- **Description**: Generates an Abstract Syntax Tree (AST) for a given mathematical expression.
 - **Request Body**:
   ```bash
   {
@@ -113,19 +116,28 @@ Before setting up the project, ensure you have the following installed:
   ```
 
 - **Response**:
-   - **Success**:
-     ```bash
-     {
-     "result": true
-     }
-     ```
+    - **Success**:
+      ```json
+      {
+      "ast": {
+      "type": "Comparison",
+      "left": {
+      "type": "Addition",
+      "left": "1",
+      "right": "2"
+      },
+      "right": "3"
+      }
+      }
+      ```
+    - **Error**:
+      ```json
+      {
+      "error": "Invalid expression"
+      }
+      ```
 
-   - **Error**:
-     ```bash
-     {
-     "error": "Invalid expression"
-     }
-     ```
+---
 
 ## **Scripts**
 
