@@ -7,6 +7,7 @@ const { lexer, compare, add, subtract, multiply, divide, astNode } = require('./
 
 main -> comparison
 operator -> "=" | "!="
+WS -> %WS
 
 comparison -> arithmetic operator arithmetic {%
     compare
@@ -28,7 +29,16 @@ term -> term "*" factor {%
 %}
   | factor
 
-factor -> int {%
+factor -> WS int WS {%
+    astNode
+%}
+  | WS int {%
+    astNode
+%}
+  | int WS {%
+    astNode
+%}
+  | int {%
     astNode
 %}
 

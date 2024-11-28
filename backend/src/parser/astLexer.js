@@ -1,6 +1,7 @@
 const moo = require("moo");
 
 const lexer = moo.compile({
+  WS:      /[ \t]+/,
   number:  /0|[1-9][0-9]*/,
   operator: ["+", "-", "*", "/", "=", "!="]
 });
@@ -30,10 +31,13 @@ const operate = (operation) => ([left, _, right]) => {
   return { ...operatorMap[operation], left: leftValue, right: rightValue };
 };
 
-const astNode = ([value]) => ({
-  type: 'number',
-  value
-})
+const astNode = ([left, mid, right]) => {
+  const value = [left, mid, right].map(extractValue).find(value => typeof value === 'number');
+  return {
+    type: 'number',
+    value
+  }
+}
 
 const add = operate("add");
 const subtract = operate("subtract");

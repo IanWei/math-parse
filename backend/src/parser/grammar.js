@@ -3,7 +3,7 @@
 (function () {
 function id(x) { return x[0]; }
 
-const { lexer, compare, add, subtract, multiply, divide } = require('./lexer');
+const { lexer, compare, add, subtract, multiply, divide, trimSpace } = require('./lexer');
 var grammar = {
     Lexer: lexer,
     ParserRules: [
@@ -96,6 +96,7 @@ var grammar = {
     {"name": "main", "symbols": ["comparison"]},
     {"name": "operator", "symbols": [{"literal":"="}]},
     {"name": "operator", "symbols": [{"literal":"!="}]},
+    {"name": "WS", "symbols": [(lexer.has("WS") ? {type: "WS"} : WS)]},
     {"name": "comparison", "symbols": ["arithmetic", "operator", "arithmetic"], "postprocess": 
         compare
          },
@@ -106,13 +107,23 @@ var grammar = {
         subtract
         },
     {"name": "arithmetic", "symbols": ["term"]},
-    {"name": "term", "symbols": ["term", {"literal":"*"}, "int"], "postprocess": 
+    {"name": "term", "symbols": ["term", {"literal":"*"}, "unit"], "postprocess": 
         multiply
         },
-    {"name": "term", "symbols": ["term", {"literal":"/"}, "int"], "postprocess": 
+    {"name": "term", "symbols": ["term", {"literal":"/"}, "unit"], "postprocess": 
         divide
         },
-    {"name": "term", "symbols": ["int"]}
+    {"name": "term", "symbols": ["unit"]},
+    {"name": "unit", "symbols": ["WS", "int", "WS"], "postprocess": 
+        trimSpace
+        },
+    {"name": "unit", "symbols": ["WS", "int"], "postprocess": 
+        trimSpace
+        },
+    {"name": "unit", "symbols": ["int", "WS"], "postprocess": 
+        trimSpace
+        },
+    {"name": "unit", "symbols": ["int"]}
 ]
   , ParserStart: "main"
 }

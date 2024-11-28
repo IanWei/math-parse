@@ -1,5 +1,5 @@
 @{%
-const { lexer, compare, add, subtract, multiply, divide } = require('./lexer');
+const { lexer, compare, add, subtract, multiply, divide, trimSpace } = require('./lexer');
 %}
 
 @lexer lexer
@@ -7,6 +7,7 @@ const { lexer, compare, add, subtract, multiply, divide } = require('./lexer');
 
 main -> comparison
 operator -> "=" | "!="
+WS -> %WS
 
 comparison -> arithmetic operator arithmetic {%
     compare
@@ -20,11 +21,21 @@ arithmetic -> arithmetic "+" term {%
 %}
   | term
 
-term -> term "*" int {%
+term -> term "*" unit {%
     multiply
 %}
-  | term "/" int {%
+  | term "/" unit {%
     divide
 %}
-  | int
+  | unit
 
+unit -> WS int WS {%
+    trimSpace
+%}
+  | WS int {%
+    trimSpace
+%}
+  | int WS {%
+    trimSpace
+%}
+  | int

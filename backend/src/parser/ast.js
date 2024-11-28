@@ -96,6 +96,7 @@ var grammar = {
     {"name": "main", "symbols": ["comparison"]},
     {"name": "operator", "symbols": [{"literal":"="}]},
     {"name": "operator", "symbols": [{"literal":"!="}]},
+    {"name": "WS", "symbols": [(lexer.has("WS") ? {type: "WS"} : WS)]},
     {"name": "comparison", "symbols": ["arithmetic", "operator", "arithmetic"], "postprocess": 
         compare
          },
@@ -113,6 +114,15 @@ var grammar = {
         divide
         },
     {"name": "term", "symbols": ["factor"]},
+    {"name": "factor", "symbols": ["WS", "int", "WS"], "postprocess": 
+        astNode
+        },
+    {"name": "factor", "symbols": ["WS", "int"], "postprocess": 
+        astNode
+        },
+    {"name": "factor", "symbols": ["int", "WS"], "postprocess": 
+        astNode
+        },
     {"name": "factor", "symbols": ["int"], "postprocess": 
         astNode
         }

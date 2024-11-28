@@ -1,6 +1,7 @@
 const moo = require("moo");
 
 const lexer = moo.compile({
+  WS:      /[ \t]+/,
   number:  /0|[1-9][0-9]*/,
   operator: ["+", "-", "*", "/", "=", "!="]
 });
@@ -39,11 +40,15 @@ const subtract = operate("subtract");
 const multiply = operate("multiply");
 const divide = operate("divide");
 
+const trimSpace = ([left, mid, right]) =>
+  [left, mid, right].map(extractValue).find(value => typeof value === 'number');
+
 module.exports = {
   lexer,
   compare,
   add,
   subtract,
   multiply,
-  divide
+  divide,
+  trimSpace
 };
