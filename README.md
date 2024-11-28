@@ -31,6 +31,8 @@ math-parse/
 │   ├── src/            # Backend source code
 │   │   ├── parser/     # Nearley grammar and lexer
 │   │   ├── tests/      # Unit tests for backend
+│   │   ├── types/      # Type decoration for backend
+│   │   ├── util/       # Unit functions for backend
 │   │   └── index.ts    # Main Express server
 ├── frontend/           # Frontend codebase
 │   ├── src/            # React frontend source code
@@ -119,15 +121,15 @@ Before setting up the project, ensure you have the following installed:
     - **Success**:
       ```json
       {
-      "ast": {
-      "type": "Comparison",
-      "left": {
-      "type": "Addition",
-      "left": "1",
-      "right": "2"
-      },
-      "right": "3"
-      }
+        "ast": {
+          "type": "Comparison",
+          "left": {
+          "type": "Addition",
+          "left": "1",
+          "right": "2"
+        },
+        "right": "3"
+        }
       }
       ```
     - **Error**:
