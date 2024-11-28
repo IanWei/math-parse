@@ -1,4 +1,4 @@
-import { parseExpression } from '../parser/parserHelper.ts';
+import { parseExpression } from '../util/parserHelper.ts';
 
 describe('Expression Parser', () => {
   const testCases = [

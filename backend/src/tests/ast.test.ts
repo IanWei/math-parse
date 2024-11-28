@@ -1,4 +1,4 @@
-import { parseExpression } from '../parser/parserHelper.ts';
+import { parseExpression } from '../util/parserHelper.ts';
 
 describe('AST Parser', () => {
   const testCases = [
@@ -26,7 +26,7 @@ describe('AST Parser', () => {
 
   testCases.forEach(({ expr, expected }) => {
     it(`should correctly parse "${expr}"`, () => {
-      expect(parseExpression(expr, true)).toBe(JSON.stringify(expected, null, 2));
+      expect(JSON.stringify(parseExpression(expr, true), null, 2)).toBe(JSON.stringify(expected, null, 2));
     });
   });
 });

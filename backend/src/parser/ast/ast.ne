@@ -1,5 +1,5 @@
 @{%
-const { lexer, compare, add, subtract, multiply, divide, astNode } = require('./astLexer');
+const { lexer, compare, add, subtract, multiply, divide, astNode } = require('./lexer');
 %}
 
 @lexer lexer

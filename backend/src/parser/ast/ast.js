@@ -3,7 +3,7 @@
 (function () {
 function id(x) { return x[0]; }
 
-const { lexer, compare, add, subtract, multiply, divide, astNode } = require('./astLexer');
+const { lexer, compare, add, subtract, multiply, divide, astNode } = require('./lexer');
 var grammar = {
     Lexer: lexer,
     ParserRules: [

@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "bun run src/index.ts",
-    "build-grammar": "nearleyc src/parser/grammar.ne -o src/parser/grammar.js",
-    "build-ast": "nearleyc src/parser/ast.ne -o src/parser/ast.js",
+    "build-comparer": "nearleyc src/parser/comparer/comparer.ne -o src/parser/comparer/comparer.js",
+    "build-ast": "nearleyc src/parser/ast/ast.ne -o src/parser/ast/ast.js",
     "test": "jest"
   },
   "devDependencies": {
