@@ -1,7 +1,4 @@
-const moo = require("moo");
-const { lexerConfig, extractValue } = require('../common');
-
-const lexer = moo.compile(lexerConfig);
+const { lexer, extractValue } = require('../common');
 
 const compare = ([left, operator, right]) => {
   left = extractValue(left);
