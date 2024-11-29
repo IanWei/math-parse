@@ -14,7 +14,7 @@ const operate = (operation) => ([left, _, right]) => {
     add: { type: 'arithmetic', operator: '+' },
     subtract: { type: 'arithmetic', operator: '-' },
     multiply: { type: 'term', operator: '*' },
-    divide: { type: 'term', operator: '*' },
+    divide: { type: 'term', operator: '/' },
   };
   
   return { ...operatorMap[operation], left: leftValue, right: rightValue };
